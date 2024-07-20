@@ -11,10 +11,12 @@ const userSchema = new Schema({
     required: true,
     minLength: 4,
   },
-  Todos: {
-    type: Schema.Types.ObjectId,
-    ref: "Todos",
-  },
+  userTodos: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Todos",
+    },
+  ],
 });
 
 const User = model("User", userSchema);

@@ -20,27 +20,30 @@ const jwtAuthentication = (req, res, next) => __awaiter(void 0, void 0, void 0, 
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader) {
-            return res.status(403).json({ error: "no headers found" });
+            return res.status(403).json({ error: "no authorization headers found" });
         }
         const token = authHeader.split(" ")[1];
-        if (token && typeof token == "string") {
-            try {
-                const verified = jsonwebtoken_1.default.verify(token, exports.SECRET);
-                console.log(verified);
-                const user = yield userSchema_1.default.findOne({ username: verified });
-                if (!user) {
-                    return res.status(403).json({ msg: "forbidden" });
-                }
-                req.headers["userId"] = JSON.stringify(user);
-                next();
-            }
-            catch (e) {
-                console.log(`JWT verification failed ${e}`);
-                return res.status(500).json({ error: "forbidden" });
-            }
-        }
-        else {
+        if (!token && typeof token !== "string") {
             return res.status(401).json({ error: "Unauthorized" });
+        }
+        try {
+            const verified = jsonwebtoken_1.default.verify(token, exports.SECRET);
+            if (typeof verified !== "object" || !("username" in verified)) {
+                return res.status(403).json({ error: "Invalid token payload" });
+            }
+            const username = verified.username;
+            const user = yield userSchema_1.default.findOne({ username });
+            if (!user) {
+                return res.status(403).json({ error: "user not found" });
+            }
+            req.headers["userId"] = user._id.toString();
+            //req.headers["user"] = JSON.stringify(user)
+            //req.user = user
+            next();
+        }
+        catch (e) {
+            console.log(`JWT verification failed ${e}`);
+            return res.status(500).json({ error: "forbidden" });
         }
     }
     catch (e) {

@@ -12,10 +12,12 @@ const userSchema = new mongoose_1.Schema({
         required: true,
         minLength: 4,
     },
-    Todos: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: "Todos",
-    },
+    userTodos: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: "Todos",
+        },
+    ],
 });
 const User = (0, mongoose_1.model)("User", userSchema);
 exports.default = User;
