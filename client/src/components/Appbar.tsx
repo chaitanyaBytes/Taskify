@@ -1,39 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { AiFillHome } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { IoIosLogOut } from "react-icons/io";
+import { useRecoilState } from "recoil";
+import userAtom from "../atoms/userAtom";
+
 export default function Appbar() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  const init = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/user/me", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
-
-      if (response.data.user) {
-        setUser(response.data.user.username);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    init();
-  }, [user]);
+  const [user, setUser] = useRecoilState(userAtom);
 
   const handleLogout = () => {
     try {
       localStorage.setItem("token", "");
       toast.success("logged out successfully");
       navigate("/auth");
-      setUser(null);
+      setUser({ username: null });
     } catch (e) {
       console.log(e);
     }
@@ -48,7 +29,7 @@ export default function Appbar() {
         <img src="/applogo.svg" alt="logo" className="w-10 h-10" />
       </div>
 
-      {!user && (
+      {!user.username && (
         <div className="flex gap-4 items-center content-center">
           <div>
             <Link to="/">
@@ -70,11 +51,11 @@ export default function Appbar() {
         </div>
       )}
 
-      {user && (
+      {user.username && (
         <div className="flex gap-9 items-center content-center">
           <div className="flex gap-1">
             <img src="/person.svg" alt="profile-icon" className="w-7 h-7" />
-            <div className="text-2xl font-semibold">{user}</div>
+            <div className="text-2xl font-semibold">{user.username}</div>
           </div>
           <div onClick={handleLogout}>
             <IoIosLogOut className="cursor-pointer" size={30} />
