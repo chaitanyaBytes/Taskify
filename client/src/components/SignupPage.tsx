@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import authAtom from "../atoms/authAtom";
 import { useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom";
@@ -37,7 +36,6 @@ const FormSchema = z.object({
 export default function SignupPage() {
   const setUser = useSetRecoilState(userAtom);
   const setAuth = useSetRecoilState(authAtom);
-  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -68,7 +66,7 @@ export default function SignupPage() {
       localStorage.setItem("token", data.token);
       setUser(data.username);
       toast.success(data.message);
-      navigate("/");
+      window.location.href = "/";
     } catch (err) {
       console.log("error in logging in.");
       toast.error("Invalid Credentials.");
@@ -77,12 +75,12 @@ export default function SignupPage() {
 
   return (
     <div className="flex flex-row h-screen w-screen items-center justify-center">
-      <div className="bg-black p-6 w-[400px] rounded-lg mb-48">
+      <div className="bg-black p-6 w-[400px] rounded-lg mb-36">
         <p className="text-white text-2xl font-semibold font-sans mb-4">
           Signup to Taskify
         </p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             <FormField
               control={form.control}
               name="name"
@@ -159,7 +157,7 @@ export default function SignupPage() {
               Signup
             </Button>
             <p className=" text-white text-md">
-              Don't have an Account{" "}
+              Already have an account?{" "}
               <span
                 className="text-blue-500 cursor-pointer"
                 onClick={() => {

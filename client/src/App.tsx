@@ -1,12 +1,11 @@
 import "./App.css";
-import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Appbar from "./components/Appbar";
-import axios from "axios";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import userAtom from "./atoms/userAtom";
 import Homepage from "./components/Homepage";
 import Authpage from "./components/Authpage";
+import InitUser from "./components/InitUser";
 
 function App() {
   const user = useRecoilValue(userAtom);
@@ -14,8 +13,8 @@ function App() {
   return (
     <div>
       <div>
-        <Appbar />
         <InitUser />
+        <Appbar />
       </div>
       <Routes>
         <Route
@@ -30,31 +29,5 @@ function App() {
     </div>
   );
 }
-
-const InitUser = () => {
-  const setUser = useSetRecoilState(userAtom);
-  const init = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/user/me", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
-
-      console.log(response.data.user);
-      if (response.data.user) {
-        setUser({ username: response.data.user.username });
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    init();
-  }, []);
-
-  return <></>;
-};
 
 export default App;

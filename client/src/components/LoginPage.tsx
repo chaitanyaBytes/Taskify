@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import authAtom from "../atoms/authAtom";
 import { useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom";
@@ -33,7 +32,6 @@ const FormSchema = z.object({
 export default function LoginPage() {
   const setUser = useSetRecoilState(userAtom);
   const setAuth = useSetRecoilState(authAtom);
-  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -62,7 +60,7 @@ export default function LoginPage() {
       localStorage.setItem("token", data.token);
       setUser(data.username);
       toast.success(data.message);
-      navigate("/");
+      window.location.href = "/";
     } catch (err) {
       console.log("error in logging in.");
       toast.error("Invalid Credentials.");
@@ -76,10 +74,7 @@ export default function LoginPage() {
           Login to Taskify
         </p>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="username"
