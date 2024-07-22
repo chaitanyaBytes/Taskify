@@ -123,7 +123,20 @@ export default function LoginPage() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="bg-blue-700">Submit</Button>
+            <Button type="submit" className="bg-blue-700">
+              Submit
+            </Button>
+            <p className=" text-white text-md">
+              Don't have an Account{" "}
+              <span
+                className="text-blue-500 cursor-pointer"
+                onClick={() => {
+                  setAuth("signup");
+                }}
+              >
+                Signup
+              </span>{" "}
+            </p>
           </form>
         </Form>
       </div>
