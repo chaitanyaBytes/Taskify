@@ -8,9 +8,7 @@ const Authpage = () => {
 
   return (
     <div className="flex flex-row h-screen items-center justify-center">
-      <p className="text-white">
-        {authState == "login" ? <LoginPage /> : <SignupPage />}
-      </p>
+      {authState == "login" ? <LoginPage /> : <SignupPage />}
     </div>
   );
 };

@@ -1,13 +1,16 @@
 import "./App.css";
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Appbar from "./components/Appbar";
-import Landing from "./components/Landing";
 import axios from "axios";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import userAtom from "./atoms/userAtom";
+import Homepage from "./components/Homepage";
+import Authpage from "./components/Authpage";
 
 function App() {
+  const user = useRecoilValue(userAtom);
+
   return (
     <div>
       <div>
@@ -15,7 +18,14 @@ function App() {
         <InitUser />
       </div>
       <Routes>
-        <Route path="/auth" element={<Landing />} />
+        <Route
+          path="/"
+          element={user.username ? <Homepage /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/auth"
+          element={!user.username ? <Authpage /> : <Navigate to="/" />}
+        />
       </Routes>
     </div>
   );

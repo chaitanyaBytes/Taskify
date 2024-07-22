@@ -13,7 +13,6 @@ export default function Appbar() {
     try {
       localStorage.setItem("token", "");
       toast.success("logged out successfully");
-      navigate("/auth");
       setUser({ username: null });
     } catch (e) {
       console.log(e);
@@ -22,7 +21,7 @@ export default function Appbar() {
 
   return (
     <div className="flex flex-row items-center content-center justify-around h-20">
-      <div className="flex gap-5">
+      <div className="flex gap-2 md:gap-5">
         <div className="text-3xl font-semibold tracking-widest cursor-pointer">
           TASKIFY
         </div>
@@ -30,7 +29,7 @@ export default function Appbar() {
       </div>
 
       {!user.username && (
-        <div className="flex gap-4 items-center content-center">
+        <div className="hidden sm:flex gap-4 items-center content-center">
           <div>
             <Link to="/">
               <AiFillHome size={30} className="cursor-pointer" />
@@ -52,7 +51,7 @@ export default function Appbar() {
       )}
 
       {user.username && (
-        <div className="flex gap-9 items-center content-center">
+        <div className="hidden sm:flex gap-9 items-center content-center">
           <div className="flex gap-1">
             <img src="/person.svg" alt="profile-icon" className="w-7 h-7" />
             <div className="text-2xl font-semibold">{user.username}</div>
