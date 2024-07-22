@@ -19,14 +19,16 @@ const middleware_1 = require("../middlewares/middleware");
 function signup(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { username, password } = req.body;
+            const { name, username, email, password } = req.body;
             const user = yield userSchema_1.default.findOne({ username });
             if (user) {
                 res.status(403).json({ error: "user already exists" });
             }
             else {
                 const newUser = new userSchema_1.default({
+                    name,
                     username,
+                    email,
                     password,
                 });
                 yield newUser.save();
@@ -34,8 +36,11 @@ function signup(req, res) {
                     const token = jsonwebtoken_1.default.sign({ username }, middleware_1.SECRET, { expiresIn: "1h" });
                     res.status(200).json({
                         _id: newUser._id,
+                        name: newUser.name,
                         username: newUser.username,
+                        email: newUser.email,
                         password: newUser.password,
+                        message: "Sucessfully signed up",
                         token: token,
                     });
                 }

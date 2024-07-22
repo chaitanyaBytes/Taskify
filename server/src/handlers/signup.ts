@@ -5,13 +5,15 @@ import { SECRET } from "../middlewares/middleware";
 
 export default async function signup(req: Request, res: Response) {
   try {
-    const { username, password } = req.body;
+    const { name, username, email, password } = req.body;
     const user = await User.findOne({ username });
     if (user) {
       res.status(403).json({ error: "user already exists" });
     } else {
       const newUser = new User({
+        name,
         username,
+        email,
         password,
       });
       await newUser.save();
@@ -19,8 +21,11 @@ export default async function signup(req: Request, res: Response) {
         const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
         res.status(200).json({
           _id: newUser._id,
+          name: newUser.name,
           username: newUser.username,
+          email: newUser.email,
           password: newUser.password,
+          message: "Sucessfully signed up",
           token: token,
         });
       } else {

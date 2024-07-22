@@ -26,8 +26,11 @@ function login(req, res) {
                 res.status(200).json({
                     _id: user._id,
                     username: user.username,
+                    email: user.email,
+                    name: user.name,
                     password: user.password,
                     token: token,
+                    message: "Successfully logged in.",
                 });
             }
             else {
