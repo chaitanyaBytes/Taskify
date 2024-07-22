@@ -1,12 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { IoIosLogOut } from "react-icons/io";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom";
+import authAtom from "@/atoms/authAtom";
 
 export default function Appbar() {
-  const navigate = useNavigate();
+  const setAuth = useSetRecoilState(authAtom);
   const [user, setUser] = useRecoilState(userAtom);
 
   const handleLogout = () => {
@@ -37,13 +38,15 @@ export default function Appbar() {
           </div>
           <div
             className="text-2xl cursor-pointer"
-            onClick={() => navigate("/auth")}
+            onClick={() => {
+              setAuth("login");
+            }}
           >
             Login
           </div>
           <div
             className="text-2xl cursor-pointer"
-            onClick={() => navigate("/auth")}
+            onClick={() => setAuth("signup")}
           >
             Signup
           </div>

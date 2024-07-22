@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -62,7 +61,7 @@ export default function LoginPage() {
 
       localStorage.setItem("token", data.token);
       setUser(data.username);
-      toast.success("successfully logged in.");
+      toast.success(data.message);
       navigate("/");
     } catch (err) {
       console.log("error in logging in.");
@@ -79,7 +78,7 @@ export default function LoginPage() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-2/3 space-y-8"
+            className="space-y-6"
           >
             <FormField
               control={form.control}
@@ -96,7 +95,6 @@ export default function LoginPage() {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>Enter your username.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -118,13 +116,12 @@ export default function LoginPage() {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>Enter your password.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button type="submit" className="bg-blue-700">
-              Submit
+              Login
             </Button>
             <p className=" text-white text-md">
               Don't have an Account{" "}
