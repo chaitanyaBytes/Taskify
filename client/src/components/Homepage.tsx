@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import TodoCard from "./TodoCard";
 import todoListState from "@/atoms/todoAtom";
 import { useRecoilState } from "recoil";
-import{ DialogDemo } from "./AddTodoButton";
+import { DialogDemo } from "./AddTodoButton";
 
 export default function Homepage() {
   const [todos, setTodos] = useRecoilState(todoListState);
@@ -12,11 +12,14 @@ export default function Homepage() {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get("https://todo-app-kbyc.onrender.com/todo/myTodos", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
+      const res = await axios.get(
+        "https://todo-app-kbyc.onrender.com/todo/myTodos",
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       const data = res.data;
       console.log(data);
       setTodos(data);
@@ -33,14 +36,26 @@ export default function Homepage() {
   }, [setTodos]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-96">
+        <div className="text-black text-3xl">
+          {" "}
+          Loading... 
+        </div>
+      </div>
+    );
   }
 
-  if (!todos) {
+  if (todos.length == 0) {
     return (
       <div>
         <DialogDemo />
-        <div> there are currently no todos</div>
+        <div className="flex justify-center items-center h-96">
+          <div className="text-black text-3xl font-bold">
+            {" "}
+            you gotta add tasks to complete them!! 😔
+          </div>
+        </div>
       </div>
     );
   }
