@@ -16,7 +16,7 @@ exports.default = dbConnect;
 const mongoose_1 = require("mongoose");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const connection_string = "mongodb://localhost:27017/TodoList";
+const connection_string = process.env.MONGODB_URL;
 function dbConnect() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
