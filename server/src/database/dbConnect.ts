@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const connection_string = "mongodb://localhost:27017/TodoList";
+const connection_string = "mongodb+srv://chaitanyagupta172004:ghannugupta@cluster0.espvczu.mongodb.net/Taskify?retryWrites=true&w=majority&appName=Cluster0";
 
 export default async function dbConnect() {
   try {
