@@ -114,7 +114,7 @@ function TodoCard({ className, ...props }: CardProps) {
           <Check className={`mr-2 h-4 w-4`} />{" "}
           {isCompleted ? "Completed" : "Mark Done"}
         </Button>
-        <Button className="w-full" onClick={() => handleLogout(props._id)}>
+        <Button className="w-full bg-red-500 hover:bg-red-700" onClick={() => handleLogout(props._id)}>
           <Ban className="mr-2 h-4 w-4" /> Delete
         </Button>
       </CardFooter>
