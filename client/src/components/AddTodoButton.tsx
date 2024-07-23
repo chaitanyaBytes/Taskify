@@ -59,7 +59,7 @@ export function DialogDemo() {
         </DialogTrigger>
         <div className="text-white text-lg sm:text-lg">Add a task</div>
       </div>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-w-[330px] rounded-lg sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add a task</DialogTitle>
           <DialogDescription>
