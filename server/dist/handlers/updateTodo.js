@@ -36,7 +36,11 @@ function updateTodo(req, res) {
                     .status(403)
                     .json({ error: "Todo does not exist for this user" });
             }
-            const updatedTodo = yield todoSchema_1.default.findByIdAndUpdate(todoId, { done: true }, { new: true });
+            const todo = yield todoSchema_1.default.findById(todoId);
+            if (!todo) {
+                throw new Error("Todo not found");
+            }
+            const updatedTodo = yield todoSchema_1.default.findByIdAndUpdate(todoId, { done: !todo.done }, { new: true });
             if (!updatedTodo) {
                 return res.status(404).json({ error: "Cannot update the todo" });
             }

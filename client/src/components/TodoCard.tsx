@@ -108,7 +108,7 @@ function TodoCard({ className, ...props }: CardProps) {
       </CardContent>
       <CardFooter className="space-x-3">
         <Button
-          className={`w-full ${isCompleted ? "bg-blue-600" : "bg-black"}`}
+          className={`w-full ${isCompleted ? "bg-blue-600 hover:bg-blue-400" : "bg-black"}`}
           onClick={() => ToggleComplete(props._id)}
         >
           <Check className={`mr-2 h-4 w-4`} />{" "}

@@ -26,9 +26,14 @@ export default async function updateTodo(req: Request, res: Response) {
         .json({ error: "Todo does not exist for this user" });
     }
 
+    const todo = await Todo.findById(todoId);
+    if (!todo) {
+      throw new Error("Todo not found");
+    }
+
     const updatedTodo = await Todo.findByIdAndUpdate(
       todoId,
-      { done: true },
+      { done: !todo.done },
       { new: true }
     );
 
