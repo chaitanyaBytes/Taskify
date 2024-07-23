@@ -74,7 +74,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex flex-row h-screen w-screen items-center justify-center">
+    <div className="flex flex-row h-screen w-screen items-center justify-center p-1">
       <div className="bg-black p-6 w-[400px] rounded-lg mb-36">
         <p className="text-white text-2xl font-semibold font-sans mb-4">
           Signup to Taskify

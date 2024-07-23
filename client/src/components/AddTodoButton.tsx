@@ -51,7 +51,7 @@ export function DialogDemo() {
 
   return (
     <Dialog>
-      <div className="flex items-center mx-10 bg-black rounded-lg sm:mx-40">
+      <div className="flex items-center mx-20 bg-black rounded-lg sm:mx-40">
         <DialogTrigger asChild>
           <Button className="bg-black hover:bg-black rounded-xl">
             <Plus className="w-6 h-6 text-white cursor-pointer " />

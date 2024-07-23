@@ -68,7 +68,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-row h-screen w-screen items-center justify-center">
+    <div className="flex flex-row h-screen w-screen items-center justify-center p-2">
       <div className="bg-black p-6 w-[400px] rounded-lg mb-48">
         <p className="text-white text-2xl font-semibold font-sans mb-4">
           Login to Taskify

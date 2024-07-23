@@ -81,7 +81,7 @@ function TodoCard({ className, ...props }: CardProps) {
   };
 
   return (
-    <Card className={cn("w-[380px]", className)} {...props}>
+    <Card className={cn("w-[380px] m-2 shadow-xl border-black", className)} {...props}>
       <CardHeader>
         <CardTitle
           className={`font-bold text-3xl ${
