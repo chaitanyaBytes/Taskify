@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TodoCard from "./TodoCard";
 import todoListState from "@/atoms/todoAtom";
 import { useRecoilState } from "recoil";
+import{ DialogDemo } from "./AddTodoButton";
 
 export default function Homepage() {
   const [todos, setTodos] = useRecoilState(todoListState);
@@ -29,22 +30,30 @@ export default function Homepage() {
 
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [setTodos]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   if (!todos) {
-    return null;
+    return (
+      <div>
+        <DialogDemo />
+        <div> there are currently no todos</div>
+      </div>
+    );
   }
 
   return (
     todos && (
-      <div className="flex flex-wrap justify-center gap-10 mt-8">
-        {todos.map((todo) => (
-          <TodoCard key={todo._id} {...todo} />
-        ))}
+      <div>
+        <DialogDemo />
+        <div className="flex flex-wrap justify-center gap-10 mt-8">
+          {todos.map((todo) => (
+            <TodoCard key={todo._id} {...todo} />
+          ))}
+        </div>
       </div>
     )
   );

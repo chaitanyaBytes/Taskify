@@ -28,7 +28,7 @@ export default async function deleteTodo(req: Request, res: Response) {
 
     const deletedTodo = await Todo.findByIdAndDelete(todoId);
 
-    if (!deleteTodo) {
+    if (!deletedTodo) {
       return res.status(404).json({ error: "Cannot delete the todo" });
     }
 
