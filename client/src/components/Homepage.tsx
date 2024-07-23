@@ -51,7 +51,7 @@ export default function Homepage() {
       <div>
         <DialogDemo />
         <div className="flex justify-center items-center h-96">
-          <div className="text-black text-3xl font-bold">
+          <div className="text-black text-3xl font-bold justify-center text-center	">
             {" "}
             you gotta add tasks to complete them!! 😔
           </div>
