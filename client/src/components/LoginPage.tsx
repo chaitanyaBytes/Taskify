@@ -44,7 +44,7 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof FormSchema>) {
     try {
       const res = await axios.post(
-        "http://localhost:3000/user/login",
+        "https://todo-app-kbyc.onrender.com/user/login",
         {
           username: values.username,
           password: values.password,
