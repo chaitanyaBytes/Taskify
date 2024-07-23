@@ -11,7 +11,7 @@ const userRoutes_1 = require("./routes/userRoutes");
 const todoRoutes_1 = require("./routes/todoRoutes");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT || 3000;
+const port = 3000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded());
 (0, dbConnect_1.default)();
