@@ -21,7 +21,7 @@ export default function Appbar() {
   };
 
   return (
-    <div className="flex flex-row items-center content-center justify-around h-20">
+    <div className="flex flex-col justify-start items-center sm:flex sm:flex-row sm:items-center sm:content-center sm:justify-around sm:h-20">
       <div className="flex gap-2 md:gap-5">
         <div className="text-3xl font-semibold tracking-widest cursor-pointer">
           TASKIFY
@@ -54,7 +54,7 @@ export default function Appbar() {
       )}
 
       {user.username && (
-        <div className="hidden sm:flex gap-9 items-center content-center">
+        <div className="flex items-center gap-16 content-center justify-between my-4 sm:my-0 sm:gap-9">
           <div className="flex gap-1">
             <img src="/person.svg" alt="profile-icon" className="w-7 h-7" />
             <div className="text-2xl font-semibold">{user.username}</div>

@@ -51,13 +51,13 @@ export function DialogDemo() {
 
   return (
     <Dialog>
-      <div className="flex items-center bg-black rounded-lg mx-40">
+      <div className="flex items-center mx-10 bg-black rounded-lg sm:mx-40">
         <DialogTrigger asChild>
           <Button className="bg-black hover:bg-black rounded-xl">
             <Plus className="w-6 h-6 text-white cursor-pointer " />
           </Button>
         </DialogTrigger>
-        <div className="text-white text-lg">Add a task</div>
+        <div className="text-white text-lg sm:text-lg">Add a task</div>
       </div>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
