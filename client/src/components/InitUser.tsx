@@ -7,7 +7,7 @@ const InitUser = () => {
   const setUser = useSetRecoilState(userAtom);
   const init = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/user/me", {
+      const response = await axios.get("https://todo-app-kbyc.onrender.com/user/me", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

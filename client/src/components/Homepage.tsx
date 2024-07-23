@@ -12,7 +12,7 @@ export default function Homepage() {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/todo/myTodos", {
+      const res = await axios.get("https://todo-app-kbyc.onrender.com/todo/myTodos", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

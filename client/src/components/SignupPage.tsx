@@ -48,7 +48,7 @@ export default function SignupPage() {
   async function onSubmit(values: z.infer<typeof FormSchema>) {
     try {
       const res = await axios.post(
-        "http://localhost:3000/user/signup",
+        "https://todo-app-kbyc.onrender.com/user/signup",
         {
           name: values.name,
           username: values.username,

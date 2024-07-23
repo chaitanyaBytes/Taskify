@@ -29,7 +29,7 @@ function TodoCard({ className, ...props }: CardProps) {
   const handleLogout = async (id: string) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/todo/delete/${id}`,
+        `https://todo-app-kbyc.onrender.com/todo/delete/${id}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -56,7 +56,7 @@ function TodoCard({ className, ...props }: CardProps) {
     console.log(isCompleted);
     try {
       const res = await axios.put(
-        `http://localhost:3000/todo/update/${id}`, // Use the passed id here
+        `https://todo-app-kbyc.onrender.com/todo/update/${id}`, // Use the passed id here
         {},
         {
           headers: {
