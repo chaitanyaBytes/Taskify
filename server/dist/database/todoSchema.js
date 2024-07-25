@@ -15,6 +15,9 @@ const TodoSchema = new mongoose_1.Schema({
         required: true,
         default: false,
     },
+    dueDate: {
+        type: Date,
+    },
 });
 const Todo = (0, mongoose_1.model)("Todos", TodoSchema);
 exports.default = Todo;

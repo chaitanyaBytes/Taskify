@@ -4,10 +4,11 @@ import User from "../database/userSchema";
 
 export default async function createTodo(req: Request, res: Response) {
   try {
-    const { title, description } = req.body;
+    const { title, description, dueDate } = req.body;
     const newTodo = new Todo({
       title: title,
       description: description,
+      dueDate: dueDate,
     });
 
     const user = await User.findById(req.headers.userId).populate("userTodos");

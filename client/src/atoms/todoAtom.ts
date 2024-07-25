@@ -4,6 +4,7 @@ export interface TodoType {
   _id: string;
   title: string;
   description: string;
+  dueDate: Date;
   done: boolean;
 }
 

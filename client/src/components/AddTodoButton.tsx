@@ -12,26 +12,29 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "./ui/DatePicker";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import todoListState from "@/atoms/todoAtom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import dueDateAtom from "@/atoms/dueDateAtom";
 
 export function DialogDemo() {
   const [title, setTitle] = useState<String>("");
   const [description, setDescription] = useState<String>("");
+  const [dueDate, setDueDate] = useRecoilState(dueDateAtom);
   const setTodos = useSetRecoilState(todoListState);
 
   async function handleSubmit() {
     try {
-      console.log(localStorage.getItem("token"));
       const res = await axios.post(
         "https://todo-app-kbyc.onrender.com/todo/create",
         {
           title: title,
           description: description,
+          dueDate: dueDate,
         },
         {
           headers: {
@@ -40,8 +43,8 @@ export function DialogDemo() {
         }
       );
       const data = res.data;
-      console.log(data);
       setTodos((oldTodos) => [...oldTodos, data.newTodo]);
+      setDueDate(undefined);
       toast.success("Task Added!");
     } catch (err) {
       console.log(err);
@@ -51,13 +54,13 @@ export function DialogDemo() {
 
   return (
     <Dialog>
-      <div className="flex items-center mx-20 bg-black rounded-lg sm:mx-40">
+      <div className="flex items-center mx-4 mt-8 h-[55px] bg-white rounded-md shadow-md border-slate-200 border sm:mx-7">
         <DialogTrigger asChild>
-          <Button className="bg-black hover:bg-black rounded-xl">
-            <Plus className="w-6 h-6 text-white cursor-pointer " />
+          <Button className="bg-white hover:bg-white rounded-md mr-3 pr-0">
+            <Plus className="w-6 h-6 text-blue-600 cursor-pointer" />
           </Button>
         </DialogTrigger>
-        <div className="text-white text-lg sm:text-lg">Add a task</div>
+        <div className="text-blue-700 text-md">Add a task</div>
       </div>
       <DialogContent className="max-w-[330px] rounded-lg sm:max-w-[425px]">
         <DialogHeader>
@@ -89,8 +92,13 @@ export function DialogDemo() {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label className="text-right">Date</Label>
+            <DatePicker type={"Due"} />
+          </div>
         </div>
-        <DialogFooter>
+        <DialogFooter className="items-center gap-1">
+          <DatePicker type={"Reminder"} />
           <DialogClose asChild>
             <Button type="submit" onClick={handleSubmit}>
               Add Task

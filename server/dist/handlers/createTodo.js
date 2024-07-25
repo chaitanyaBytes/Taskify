@@ -18,10 +18,11 @@ const userSchema_1 = __importDefault(require("../database/userSchema"));
 function createTodo(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { title, description } = req.body;
+            const { title, description, dueDate } = req.body;
             const newTodo = new todoSchema_1.default({
                 title: title,
                 description: description,
+                dueDate: dueDate,
             });
             const user = yield userSchema_1.default.findById(req.headers.userId).populate("userTodos");
             if (!user) {

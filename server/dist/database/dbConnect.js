@@ -16,7 +16,8 @@ exports.default = dbConnect;
 const mongoose_1 = require("mongoose");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const connection_string = "mongodb+srv://chaitanyagupta172004:ghannugupta@cluster0.espvczu.mongodb.net/Taskify?retryWrites=true&w=majority&appName=Cluster0";
+// const connection_string = "mongodb+srv://chaitanyagupta172004:ghannugupta@cluster0.espvczu.mongodb.net/Taskify?retryWrites=true&w=majority&appName=Cluster0";
+const connection_string = "mongodb://localhost:27017/TodoList";
 function dbConnect() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

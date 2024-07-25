@@ -21,7 +21,6 @@ export default function Homepage() {
         }
       );
       const data = res.data;
-      console.log(data);
       setTodos(data);
       setLoading(false);
     } catch (e) {
@@ -38,38 +37,19 @@ export default function Homepage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96">
-        <div className="text-black text-3xl">
-          {" "}
-          Loading... 
-        </div>
-      </div>
-    );
-  }
-
-  if (todos.length == 0) {
-    return (
-      <div>
-        <DialogDemo />
-        <div className="flex justify-center items-center h-96">
-          <div className="text-black text-3xl font-bold justify-center text-center	">
-            {" "}
-            you gotta add tasks to complete them!! 😔
-          </div>
-        </div>
+        <div className="text-black text-3xl"> Loading...</div>
       </div>
     );
   }
 
   return (
-    todos && (
-      <div>
-        <DialogDemo />
-        <div className="flex flex-wrap justify-center gap-10 mt-8">
-          {todos.map((todo) => (
-            <TodoCard key={todo._id} {...todo} />
-          ))}
-        </div>
+    <div>
+      <DialogDemo />
+      <div className="flex flex-col justify-center items-center mt-3">
+        {todos.map((todo) => (
+          <TodoCard key={todo._id} {...todo} />
+        ))}
       </div>
-    )
+    </div>
   );
 }

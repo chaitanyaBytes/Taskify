@@ -17,4 +17,3 @@ export default async function dbConnect() {
     console.log(`Error: ${e}`);
   }
 }
-

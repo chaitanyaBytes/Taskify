@@ -14,6 +14,9 @@ const TodoSchema = new Schema({
     required: true,
     default: false,
   },
+  dueDate: {
+    type: Date,
+  },
 });
 
 const Todo = model("Todos", TodoSchema);
