@@ -94,10 +94,12 @@ export function DialogDemo() {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label className="text-right">Date</Label>
-            <DatePicker type={"Due"} />
+            <div className="col-span-3">
+              <DatePicker type={"Due"} />
+            </div>
           </div>
         </div>
-        <DialogFooter className="items-center gap-1">
+        <DialogFooter className="items-center gap-2 flex flex-row justify-end">
           <DatePicker type={"Reminder"} />
           <DialogClose asChild>
             <Button type="submit" onClick={handleSubmit}>

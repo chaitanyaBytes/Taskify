@@ -29,13 +29,13 @@ export function DatePicker({ type }: DatePickerProps) {
   const [date, setDate] = useRecoilState(dueDateAtom);
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
+    <Popover >
+      <PopoverTrigger asChild className="col-span-3">
         {type == "Due" ? (
           <Button
             variant={"outline"}
             className={cn(
-              "w-[280px] justify-start text-left font-normal",
+              "w-[205px] justify-start text-left font-normal sm:w-[280px]",
               !date && "text-muted-foreground"
             )}
           >
